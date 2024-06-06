@@ -8,11 +8,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * La clase ProveedorDao realiza operaciones de acceso a datos para la entidad Proveedor en la base de datos.
+ * Permite registrar, listar, eliminar y modificar proveedores.
+ */
 public class ProveedorDao {
     Connection con;
     Conexion cn = new Conexion();
     PreparedStatement ps;
     ResultSet rs;
+
+    /**
+     * Registra un nuevo proveedor en la base de datos.
+     *
+     * @param pr el proveedor a registrar
+     * @return true si el proveedor se registra correctamente, false en caso contrario
+     */
     public boolean RegistrarProveedor(Proveedor pr){
         String sql = "INSERT INTO proveedor(ruc, nombre, telefono, direccion) VALUES (?,?,?,?)";
         try {
@@ -36,6 +47,11 @@ public class ProveedorDao {
         }
     }
     
+    /**
+     * Obtiene una lista de todos los proveedores almacenados en la base de datos.
+     *
+     * @return una lista de proveedores
+     */
     public List ListarProveedor(){
         List<Proveedor> Listapr = new ArrayList();
         String sql = "SELECT * FROM proveedor";
@@ -55,10 +71,22 @@ public class ProveedorDao {
             
         } catch (SQLException e) {
             System.out.println(e.toString());
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e.toString());
+            }
         }
         return Listapr;
     }
     
+    /**
+     * Elimina un proveedor de la base de datos dado su identificador.
+     *
+     * @param id el identificador del proveedor a eliminar
+     * @return true si el proveedor se elimina correctamente, false en caso contrario
+     */
     public boolean EliminarProveedor(int id){
         String sql = "DELETE FROM proveedor WHERE id = ? ";
         try {
@@ -70,7 +98,7 @@ public class ProveedorDao {
         } catch (SQLException e) {
             System.out.println(e.toString());
             return false;
-        }finally{
+        } finally {
             try {
                 con.close();
             } catch (SQLException e) {
@@ -79,6 +107,12 @@ public class ProveedorDao {
         }
     }
     
+    /**
+     * Modifica los datos de un proveedor en la base de datos.
+     *
+     * @param pr el proveedor con los datos modificados
+     * @return true si los datos del proveedor se modifican correctamente, false en caso contrario
+     */
     public boolean ModificarProveedor(Proveedor pr){
         String sql = "UPDATE proveedor SET ruc=?, nombre=?, telefono=?, direccion=? WHERE id=?";
         try {
@@ -94,7 +128,7 @@ public class ProveedorDao {
         } catch (SQLException e) {
             System.out.println(e.toString());
             return false;
-        }finally{
+        } finally {
             try {
                 con.close();
             } catch (SQLException e) {

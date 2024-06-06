@@ -27,14 +27,29 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.filechooser.FileSystemView;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * La clase VentaDao representa un Objeto de Acceso a Datos (DAO) para administrar operaciones de base de datos relacionadas con ventas.
+ * Incluye métodos para recuperar, insertar y actualizar datos de ventas en la base de datos.
+ */
 public class VentaDao {
     Connection con;
     Conexion cn = new Conexion();
     PreparedStatement ps;
     ResultSet rs;
     int r;
-    
+
+    /**
+     * Obtiene el ID máximo de venta de la base de datos.
+     *
+     * @return El ID máximo de venta.
+     */
     public int IdVenta(){
         int id = 0;
         String sql = "SELECT MAX(id) FROM ventas";
@@ -50,7 +65,13 @@ public class VentaDao {
         }
         return id;
     }
-    
+
+    /**
+     * Inserta un nuevo registro de venta en la base de datos.
+     *
+     * @param v El objeto Venta que representa la venta a registrar.
+     * @return El código de resultado que indica el éxito o el fracaso de la operación.
+     */
     public int RegistrarVenta(Venta v){
         String sql = "INSERT INTO ventas (cliente, vendedor, total, fecha) VALUES (?,?,?,?)";
         try {
@@ -63,7 +84,7 @@ public class VentaDao {
             ps.execute();
         } catch (SQLException e) {
             System.out.println(e.toString());
-        }finally{
+        } finally{
             try {
                 con.close();
             } catch (SQLException e) {
@@ -72,9 +93,15 @@ public class VentaDao {
         }
         return r;
     }
-    
+
+    /**
+     * Inserta detalles de una venta en la base de datos.
+     *
+     * @param Dv El objeto Detalle que representa los detalles de la venta a registrar.
+     * @return El código de resultado que indica el éxito o el fracaso de la operación.
+     */
     public int RegistrarDetalle(Detalle Dv){
-       String sql = "INSERT INTO detalle (id_pro, cantidad, precio, id_venta) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO detalle (id_pro, cantidad, precio, id_venta) VALUES (?,?,?,?)";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -85,7 +112,7 @@ public class VentaDao {
             ps.execute();
         } catch (SQLException e) {
             System.out.println(e.toString());
-        }finally{
+        } finally{
             try {
                 con.close();
             } catch (SQLException e) {
@@ -94,7 +121,14 @@ public class VentaDao {
         }
         return r;
     }
-    
+
+    /**
+     * Actualiza el stock de un producto en la base de datos.
+     *
+     * @param cant La nueva cantidad de stock.
+     * @param id El ID del producto cuyo stock se actualizará.
+     * @return True si la actualización del stock fue exitosa, false en caso contrario.
+     */
     public boolean ActualizarStock(int cant, int id){
         String sql = "UPDATE productos SET stock = ? WHERE id = ?";
         try {
@@ -109,27 +143,40 @@ public class VentaDao {
             return false;
         }
     }
-    
+
+    /**
+     * Recupera una lista de ventas de la base de datos.
+     *
+     * @return Una lista de objetos Venta que representan las ventas recuperadas de la base de datos.
+     */
     public List Listarventas(){
-       List<Venta> ListaVenta = new ArrayList();
-       String sql = "SELECT c.id AS id_cli, c.nombre, v.* FROM clientes c INNER JOIN ventas v ON c.id = v.cliente";
-       try {
-           con = cn.getConnection();
-           ps = con.prepareStatement(sql);
-           rs = ps.executeQuery();
-           while (rs.next()) {               
-               Venta vent = new Venta();
-               vent.setId(rs.getInt("id"));
-               vent.setNombre_cli(rs.getString("nombre"));
-               vent.setVendedor(rs.getString("vendedor"));
-               vent.setTotal(rs.getDouble("total"));
-               ListaVenta.add(vent);
-           }
-       } catch (SQLException e) {
-           System.out.println(e.toString());
-       }
-       return ListaVenta;
-   }
+        List<Venta> ListaVenta = new ArrayList();
+        String sql = "SELECT c.id AS id_cli, c.nombre, v.* FROM clientes c INNER JOIN ventas v ON c.id = v.cliente";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Venta vent = new Venta();
+                vent.setId(rs.getInt("id"));
+                vent.setNombre_cli(rs.getString("nombre"));
+                vent.setVendedor(rs.getString("vendedor"));
+                vent.setTotal(rs.getDouble("total"));
+                ListaVenta.add(vent);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return ListaVenta;
+    }
+
+     /**
+     * Busca una venta por su ID en la base de datos.
+     *
+     * @param id El ID de la venta a buscar.
+     * @return Un objeto Venta que representa la venta encontrada.
+     */
+
     public Venta BuscarVenta(int id){
         Venta cl = new Venta();
         String sql = "SELECT * FROM ventas WHERE id = ?";
@@ -150,6 +197,14 @@ public class VentaDao {
         }
         return cl;
     }
+    /**
+     * Genera un archivo PDF que contiene los detalles de una venta.
+     *
+     * @param idventa El ID de la venta.
+     * @param Cliente El ID del cliente.
+     * @param total El total de la venta.
+     * @param usuario El nombre del vendedor.
+     */
     public void pdfV(int idventa, int Cliente, double total, String usuario) {
         try {
             Date date = new Date();

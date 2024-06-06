@@ -77,99 +77,125 @@ public final class Sistema extends javax.swing.JFrame {
             LabelVendedor.setText(priv.getNombre());
         }
     }
-    public void ListarCliente() {
-        List<Cliente> ListarCl = client.ListarCliente();
-        modelo = (DefaultTableModel) TableCliente.getModel();
-        Object[] ob = new Object[6];
-        for (int i = 0; i < ListarCl.size(); i++) {
-            ob[0] = ListarCl.get(i).getId();
-            ob[1] = ListarCl.get(i).getDni();
-            ob[2] = ListarCl.get(i).getNombre();
-            ob[3] = ListarCl.get(i).getTelefono();
-            ob[4] = ListarCl.get(i).getDireccion();
-            modelo.addRow(ob);
-        }
-        TableCliente.setModel(modelo);
-
+   /**
+ * Lista todos los clientes en la tabla de clientes.
+ * Obtiene la lista de clientes desde el modelo, y la agrega al modelo de la tabla.
+ */
+public void ListarCliente() {
+    List<Cliente> ListarCl = client.ListarCliente();
+    modelo = (DefaultTableModel) TableCliente.getModel();
+    Object[] ob = new Object[6];
+    for (int i = 0; i < ListarCl.size(); i++) {
+        ob[0] = ListarCl.get(i).getId();
+        ob[1] = ListarCl.get(i).getDni();
+        ob[2] = ListarCl.get(i).getNombre();
+        ob[3] = ListarCl.get(i).getTelefono();
+        ob[4] = ListarCl.get(i).getDireccion();
+        modelo.addRow(ob);
     }
+    TableCliente.setModel(modelo);
+}
 
-    public void ListarProveedor() {
-        List<Proveedor> ListarPr = PrDao.ListarProveedor();
-        modelo = (DefaultTableModel) TableProveedor.getModel();
-        Object[] ob = new Object[5];
-        for (int i = 0; i < ListarPr.size(); i++) {
-            ob[0] = ListarPr.get(i).getId();
-            ob[1] = ListarPr.get(i).getRuc();
-            ob[2] = ListarPr.get(i).getNombre();
-            ob[3] = ListarPr.get(i).getTelefono();
-            ob[4] = ListarPr.get(i).getDireccion();
-            modelo.addRow(ob);
-        }
-        TableProveedor.setModel(modelo);
-
+/**
+ * Lista todos los proveedores en la tabla de proveedores.
+ * Obtiene la lista de proveedores desde el modelo, y la agrega al modelo de la tabla.
+ */
+public void ListarProveedor() {
+    List<Proveedor> ListarPr = PrDao.ListarProveedor();
+    modelo = (DefaultTableModel) TableProveedor.getModel();
+    Object[] ob = new Object[5];
+    for (int i = 0; i < ListarPr.size(); i++) {
+        ob[0] = ListarPr.get(i).getId();
+        ob[1] = ListarPr.get(i).getRuc();
+        ob[2] = ListarPr.get(i).getNombre();
+        ob[3] = ListarPr.get(i).getTelefono();
+        ob[4] = ListarPr.get(i).getDireccion();
+        modelo.addRow(ob);
     }
-    public void ListarUsuarios() {
-        List<login> Listar = login.ListarUsuarios();
-        modelo = (DefaultTableModel) TableUsuarios.getModel();
-        Object[] ob = new Object[4];
-        for (int i = 0; i < Listar.size(); i++) {
-            ob[0] = Listar.get(i).getId();
-            ob[1] = Listar.get(i).getNombre();
-            ob[2] = Listar.get(i).getCorreo();
-            ob[3] = Listar.get(i).getRol();
-            modelo.addRow(ob);
-        }
-        TableUsuarios.setModel(modelo);
+    TableProveedor.setModel(modelo);
+}
 
+/**
+ * Lista todos los usuarios en la tabla de usuarios.
+ * Obtiene la lista de usuarios desde el modelo, y la agrega al modelo de la tabla.
+ */
+public void ListarUsuarios() {
+    List<login> Listar = login.ListarUsuarios();
+    modelo = (DefaultTableModel) TableUsuarios.getModel();
+    Object[] ob = new Object[4];
+    for (int i = 0; i < Listar.size(); i++) {
+        ob[0] = Listar.get(i).getId();
+        ob[1] = Listar.get(i).getNombre();
+        ob[2] = Listar.get(i).getCorreo();
+        ob[3] = Listar.get(i).getRol();
+        modelo.addRow(ob);
     }
-    public void ListarProductos() {
-        List<Productos> ListarPro = proDao.ListarProductos();
-        modelo = (DefaultTableModel) TableProducto.getModel();
-        Object[] ob = new Object[6];
-        for (int i = 0; i < ListarPro.size(); i++) {
-            ob[0] = ListarPro.get(i).getId();
-            ob[1] = ListarPro.get(i).getCodigo();
-            ob[2] = ListarPro.get(i).getNombre();
-            ob[3] = ListarPro.get(i).getProveedorPro();
-            ob[4] = ListarPro.get(i).getStock();
-            ob[5] = ListarPro.get(i).getPrecio();
-            modelo.addRow(ob);
-        }
-        TableProducto.setModel(modelo);
+    TableUsuarios.setModel(modelo);
+}
 
+/**
+ * Lista todos los productos en la tabla de productos.
+ * Obtiene la lista de productos desde el modelo, y la agrega al modelo de la tabla.
+ */
+public void ListarProductos() {
+    List<Productos> ListarPro = proDao.ListarProductos();
+    modelo = (DefaultTableModel) TableProducto.getModel();
+    Object[] ob = new Object[6];
+    for (int i = 0; i < ListarPro.size(); i++) {
+        ob[0] = ListarPro.get(i).getId();
+        ob[1] = ListarPro.get(i).getCodigo();
+        ob[2] = ListarPro.get(i).getNombre();
+        ob[3] = ListarPro.get(i).getProveedorPro();
+        ob[4] = ListarPro.get(i).getStock();
+        ob[5] = ListarPro.get(i).getPrecio();
+        modelo.addRow(ob);
     }
+    TableProducto.setModel(modelo);
+}
 
-    public void ListarConfig() {
-        conf = proDao.BuscarDatos();
-        txtIdConfig.setText("" + conf.getId());
-        txtRucConfig.setText("" + conf.getRuc());
-        txtNombreConfig.setText("" + conf.getNombre());
-        txtTelefonoConfig.setText("" + conf.getTelefono());
-        txtDireccionConfig.setText("" + conf.getDireccion());
-        txtMensaje.setText("" + conf.getMensaje());
+/**
+ * Lista la configuración en los campos de texto correspondientes.
+ * Obtiene la configuración desde el modelo, y la muestra en los campos de texto.
+ */
+public void ListarConfig() {
+    conf = proDao.BuscarDatos();
+    txtIdConfig.setText("" + conf.getId());
+    txtRucConfig.setText("" + conf.getRuc());
+    txtNombreConfig.setText("" + conf.getNombre());
+    txtTelefonoConfig.setText("" + conf.getTelefono());
+    txtDireccionConfig.setText("" + conf.getDireccion());
+    txtMensaje.setText("" + conf.getMensaje());
+}
+
+/**
+ * Lista todas las ventas en la tabla de ventas.
+ * Obtiene la lista de ventas desde el modelo, y la agrega al modelo de la tabla.
+ */
+public void ListarVentas() {
+    List<Venta> ListarVenta = Vdao.Listarventas();
+    modelo = (DefaultTableModel) TableVentas.getModel();
+    Object[] ob = new Object[4];
+    for (int i = 0; i < ListarVenta.size(); i++) {
+        ob[0] = ListarVenta.get(i).getId();
+        ob[1] = ListarVenta.get(i).getNombre_cli();
+        ob[2] = ListarVenta.get(i).getVendedor();
+        ob[3] = ListarVenta.get(i).getTotal();
+        modelo.addRow(ob);
     }
+    TableVentas.setModel(modelo);
+}
 
-    public void ListarVentas() {
-        List<Venta> ListarVenta = Vdao.Listarventas();
-        modelo = (DefaultTableModel) TableVentas.getModel();
-        Object[] ob = new Object[4];
-        for (int i = 0; i < ListarVenta.size(); i++) {
-            ob[0] = ListarVenta.get(i).getId();
-            ob[1] = ListarVenta.get(i).getNombre_cli();
-            ob[2] = ListarVenta.get(i).getVendedor();
-            ob[3] = ListarVenta.get(i).getTotal();
-            modelo.addRow(ob);
-        }
-        TableVentas.setModel(modelo);
-
+/**
+ * Limpia todas las filas de la tabla actual.
+ * Elimina todas las filas del modelo de la tabla.
+ */
+public void LimpiarTable() {
+    for (int i = 0; i < modelo.getRowCount(); i++) {
+        modelo.removeRow(i);
+        i = i - 1;
     }
+}
 
-    public void LimpiarTable() {
-        for (int i = 0; i < modelo.getRowCount(); i++) {
-            modelo.removeRow(i);
-            i = i - 1;
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1780,6 +1806,8 @@ public final class Sistema extends javax.swing.JFrame {
         event.numberKeyPress(evt);
     }//GEN-LAST:event_txtCodigoVentaKeyTyped
 
+    
+    
     private void txtCodigoVentaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoVentaKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {

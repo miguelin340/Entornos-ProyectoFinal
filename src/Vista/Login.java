@@ -9,16 +9,34 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import javax.swing.JOptionPane;
 
+/**
+ * La clase Login representa la interfaz gráfica para el inicio de sesión del usuario.
+ * Permite validar las credenciales ingresadas y redirigir al usuario a la ventana principal del sistema.
+ */
 
 public class Login extends javax.swing.JFrame {
+    
+    
     login lg = new login();
+    
+    
     LoginDAO login = new LoginDAO();
+    
+    
+    /**
+     * Constructor de la clase Login. Inicializa los componentes y ajusta la ventana al centro de la pantalla.
+     */
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
         txtCorreo.setText("angel@gmail.com");
         txtPass.setText("admin");
     }
+    
+    /**
+     * Valida las credenciales ingresadas por el usuario. Si son correctas, abre la ventana principal del sistema.
+     * Si no son correctas, muestra un mensaje de error.
+     */
     public void validar(){
         String correo = txtCorreo.getText();
         String pass = String.valueOf(txtPass.getPassword());
@@ -98,10 +116,22 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción que se ejecuta al presionar el botón "Login". Llama al método validar para comprobar las credenciales.
+     * 
+     * @param evt El evento de acción generado al presionar el botón.
+      */
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         validar();
     }//GEN-LAST:event_btnIniciarActionPerformed
 
+     /**
+     * Acción que se ejecuta al realizar una acción en el campo de texto del correo electrónico.
+     * Actualmente no tiene una implementación.
+     * 
+     * @param evt El evento de acción generado.
+     */
+    
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoActionPerformed
