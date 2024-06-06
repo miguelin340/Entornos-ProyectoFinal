@@ -10,16 +10,11 @@ import javax.swing.JTextField;
  * tipos de
  * caracteres que se pueden ingresar.
  * 
- * <p>
  * Esta clase contiene métodos para restringir la entrada de texto a solo
  * letras,
  * solo números, y números con decimales.
- * </p>
- * 
- * <p>
  * Ejemplo de uso:
  * 
- * <pre>
  * {@code
  * Eventos eventos = new Eventos();
  * textField.addKeyListener(new KeyAdapter() {
@@ -28,9 +23,6 @@ import javax.swing.JTextField;
  *     }
  * });
  * }
- * </pre>
- * </p>
- * 
  * @version 1.0
  * @since 2024-06-06
  */

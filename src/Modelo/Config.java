@@ -4,24 +4,24 @@ package Modelo;
  * La clase Config representa la configuración de una entidad, incluyendo su
  * identificador, RUC, nombre, teléfono, dirección y mensaje.
  * 
- * <p>
+ * 
  * Esta clase proporciona métodos para obtener y establecer los atributos de
  * configuración de la entidad. También incluye un constructor por defecto y un
  * constructor parametrizado para facilitar la creación de instancias de Config.
- * </p>
  * 
- * <p>
+ * 
+ * 
  * Ejemplo de uso:
  * 
- * <pre>
+ * 
  * {@code
  * Config config = new Config(1, "1234567890", "Mi Empresa", "555-5555", "Calle Falsa 123", "Bienvenidos a Mi Empresa");
  * int id = config.getId();
  * String nombre = config.getNombre();
  * config.setTelefono("555-5556");
  * }
- * </pre>
- * </p>
+ * 
+ * 
  * 
  * @version 1.0
  * @since 2024-06-06

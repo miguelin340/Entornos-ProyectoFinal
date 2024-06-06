@@ -210,6 +210,11 @@ public class ProductosDao {
         }
         return pr;
     }
+
+    /**
+     *
+     * @return
+     */
     public Config BuscarDatos(){
         Config conf = new Config();
         String sql = "SELECT * FROM config";
@@ -231,6 +236,11 @@ public class ProductosDao {
         return conf;
     }
     
+    /**
+     *
+     * @param conf
+     * @return true; 
+     */
     public boolean ModificarDatos(Config conf){
        String sql = "UPDATE config SET ruc=?, nombre=?, telefono=?, direccion=?, mensaje=? WHERE id=?";
        try {

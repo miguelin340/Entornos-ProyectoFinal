@@ -8,17 +8,17 @@ import java.sql.SQLException;
  * La clase Conexion proporciona métodos para establecer una conexión con una
  * base de datos MySQL.
  * 
- * <p>
+ * 
  * Esta clase utiliza el controlador JDBC para conectarse a una base de datos
  * específica y
  * devuelve un objeto Connection que se puede utilizar para interactuar con la
  * base de datos.
- * </p>
  * 
- * <p>
+ * 
+ * 
  * Ejemplo de uso:
  * 
- * <pre>
+ * 
  * {@code
  * Conexion conexion = new Conexion();
  * Connection con = conexion.getConnection();
@@ -26,8 +26,8 @@ import java.sql.SQLException;
  *     // Operaciones con la base de datos
  * }
  * }
- * </pre>
- * </p>
+ * 
+ * 
  * 
  * @version 1.0
  * @since 2024-06-06
@@ -39,13 +39,13 @@ public class Conexion {
     /**
      * Establece una conexión con la base de datos MySQL especificada.
      * 
-     * <p>
+     * 
      * Este método intenta conectarse a una base de datos MySQL ubicada en
      * "localhost" en el puerto 3306,
      * con el nombre de la base de datos "cafeteria" y usando las credenciales
      * "root" para el usuario
      * y la contraseña.
-     * </p>
+     * 
      * 
      * @return un objeto {@link Connection} que representa la conexión establecida,
      *         o {@code null} si no se pudo establecer la conexión.

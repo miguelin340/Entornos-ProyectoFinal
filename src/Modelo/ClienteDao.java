@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  * de clientes.
  * Permite registrar, listar, eliminar, modificar y buscar clientes.
  * 
- * @autor USUARIO
+ * @author  Miguel
  */
 public class ClienteDao {
 

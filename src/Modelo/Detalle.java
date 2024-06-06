@@ -7,25 +7,19 @@ package Modelo;
  * precio
  * y el identificador de la venta.
  * 
- * <p>
+ * 
  * Esta clase proporciona métodos para obtener y establecer los atributos de un
  * detalle de venta. También incluye un constructor por defecto y un constructor
  * parametrizado para facilitar la creación de instancias de Detalle.
- * </p>
- * 
- * <p>
  * Ejemplo de uso:
  * 
- * <pre>
+ * 
  * {@code
  * Detalle detalle = new Detalle(1, 100, 2, 50.0, 1);
  * int id = detalle.getId();
  * int cantidad = detalle.getCantidad();
  * detalle.setPrecio(45.0);
  * }
- * </pre>
- * </p>
- * 
  * @version 1.0
  * @since 2024-06-06
  */
